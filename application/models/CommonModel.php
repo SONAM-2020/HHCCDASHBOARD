@@ -13,4 +13,26 @@ class CommonModel extends CI_Model{
         return $query;
         
     }
+    function getcalldetails(){
+        $count=0;
+        $query =$this->db->query("SELECT COUNT(*) overallemergencycount, u.`firstName` FROM `tripforemergencyspot` e JOIN `userdetails` u ON u.`Id`=e.`userdetails` WHERE e.`tripStartDateTime`>= CURRENT_DATE GROUP BY e.`userdetails`")->result_array();
+
+        $query =$this->db->query("SELECT COUNT(*) overallterminalcount,u.`firstName` FROM `terminalcasepatientinfo` t JOIN `userdetails` u ON u.`Id`=t.`agentId`WHERE t.`insertedDateTime`>=CURRENT_DATE GROUP BY t.`agentId`")->result_array();
+
+        $query =$this->db->query("SELECT COUNT(*) overallhospitalcount,u.`firstName` FROM `hospitaltransferpatientinfo` t JOIN `userdetails` u ON u.`Id`=t.`agentId` WHERE t.`insertedDateTime`>=CURRENT_DATE GROUP BY t.`agentId`")->result_array();
+
+        $query =$this->db->query("SELECT COUNT(*) overallfeedbackcount,u.`firstName` FROM `feedback` t JOIN `userdetails` u ON u.`Id`=t.`userdetails` WHERE t.`logDateTime`>=CURRENT_DATE GROUP BY t.`userdetails`")->result_array();
+
+        $query =$this->db->query("SELECT COUNT(*) overallfeedbackcount,u.`firstName` FROM `feedback` t JOIN `userdetails` u ON u.`Id`=t.`userdetails` WHERE t.`logDateTime`>=CURRENT_DATE GROUP BY t.`userdetails`")->result_array();
+
+
+        $query =$this->db->query("SELECT COUNT(*) overallemergencycount, u.`firstName` FROM `tripforemergencyspot` e JOIN `userdetails` u ON u.`Id`=e.`userdetails` WHERE e.`tripStartDateTime`>= CURRENT_DATE GROUP BY e.`userdetails`")->result_array();
+
+        $query =$this->db->query("SELECT COUNT(*) overallemergencycount, u.`firstName` FROM `tripforemergencyspot` e JOIN `userdetails` u ON u.`Id`=e.`userdetails` WHERE e.`tripStartDateTime`>= CURRENT_DATE GROUP BY e.`userdetails`")->result_array();
+
+        //$data= array_merge($query1,$query2,$query3,$query4,$query5);
+
+        return $query;
+        
+    }
 }
